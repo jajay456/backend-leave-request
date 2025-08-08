@@ -22,9 +22,9 @@ public class LeaveReportService {
         Map<String, Map<String, Object>> summary = new LinkedHashMap<>();
 
         for (LeaveRequest req : requests) {
-            String username = req.getUser().getUsername();
-            String dept = req.getUser().getDepartment();
-            String type = req.getLeaveType().getName();
+            String username = req.getUser() != null ? req.getUser().getUsername() : "N/A";
+            String dept = req.getUser() != null ? req.getUser().getDepartment() : "N/A";
+            String type = req.getLeaveType() != null ? req.getLeaveType().getName() : "N/A";
 
             long days = ChronoUnit.DAYS.between(req.getStartDate(), req.getEndDate().plusDays(1));
 

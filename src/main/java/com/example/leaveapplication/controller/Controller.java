@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.List;
 import java.util.Map;
 
@@ -49,27 +48,12 @@ public class Controller {
         return ResponseEntity.ok(leaveRequestService.getAllLeaveRequests());
     }
 
-    @PutMapping("/update-leave-status/{id}")
-    public ResponseEntity<LeaveRequestDto> updateLeaveStatus(
-            @PathVariable Long id,
-            @RequestBody UpdateLeaveRequestStatusDto dto) {
-        return ResponseEntity.ok(leaveRequestService.updateLeaveStatus(id, dto));
-    }
-
     @GetMapping("/get-all-leave-type")
     public ResponseEntity<List<LeaveTypeDto>> getAll() {
         return ResponseEntity.ok(leaveTypeService.findAll());
     }
 
 
-    @GetMapping("/leave-report")
-    public ResponseEntity<List<Map<String, Object>>> getLeaveDetailsByUser(
-            @RequestParam int month,
-            @RequestParam int year,
-            @RequestParam(required = false) String department
-    ) {
-        return ResponseEntity.ok(leaveReportService.getDetailsByUser(month, year, department));
-    }
     @GetMapping("/get-leave-requests-by-user/{userId}")
     public ResponseEntity<List<LeaveRequestDto>> getLeaveRequestsByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(leaveRequestService.getLeaveRequestsByUserId(userId));
